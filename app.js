@@ -40,7 +40,7 @@ app.use(views(path.join(__dirname, 'views'), {
 app.use(cros);
 
 // 健康监测 router
-router.use('/__engine/1/ping', async (ctx, next) => {
+router.all('/__engine/1/ping', ctx => {
   ctx.body = {
     runtime: 'nodejs-' + process.version,
     version: 'custom'
