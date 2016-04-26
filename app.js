@@ -31,7 +31,9 @@ const router = new Router();
 // middlewares
 app.use(convert(bodyparser()));
 app.use(convert(json()));
-app.use(convert(logger()));
+if (app.env === 'development') {
+  app.use(convert(logger()));
+}
 app.use(convert(serve(path.join(__dirname, 'public'))));
 app.use(views(path.join(__dirname, 'views'), {
   extension: 'swig'
