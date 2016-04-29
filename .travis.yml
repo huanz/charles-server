@@ -7,4 +7,4 @@ before_install:
 install:
 - npm install -g avoscloud-code
 script:
-- lean deploy -o 'deploy by travis'
+- lean deploy -g -o 'deploy by travis'
