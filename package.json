@@ -4,8 +4,7 @@
   "description": "A sample Node.js app using koa 2",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js"
   },
   "keywords": [
     "node",
