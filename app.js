@@ -17,6 +17,8 @@ import cros from './middleware/cros';
 import index from './routes/index';
 import api from './routes/api';
 
+console.log(process.env);
+
 const APP_ID = process.env.LEANCLOUD_APP_ID || 'z4jzXcAKbNIa0xxluFtIuz80-gzGzoHsz';
 const APP_KEY = process.env.LEANCLOUD_APP_KEY || 'nAxHXqjX9hHPRrlnNxoYBMYk';
 const MASTER_KEY = process.env.LEANCLOUD_APP_MASTER_KEY || '4M07vmyAi1RHLjMmo7oXJYDN';
