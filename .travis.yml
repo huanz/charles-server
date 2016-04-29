@@ -4,5 +4,9 @@ node_js:
   - stable
   - 5
   - 4
+before_install:
+- cp -r .leancloud ~
+install:
+- npm install -g avoscloud-code
 script:
-  - npm test
+- lean deploy -o 'deploy by travis'
