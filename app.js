@@ -30,7 +30,7 @@ const router = new Router();
 // const D = debug('charles:server');
 
 // force https
-app.use(forceHttps(AV));
+// app.use(forceHttps(AV));
 
 // middlewares
 app.use(convert(bodyparser()));
