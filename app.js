@@ -29,6 +29,9 @@ const app = new Koa();
 const router = new Router();
 // const D = debug('charles:server');
 
+// 使用 LeanEngine 中间件
+app.use(AV.Cloud);
+
 // force https
 // app.use(forceHttps(AV));
 

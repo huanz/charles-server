@@ -1,6 +1,6 @@
 import config from '../config';
 
-export default function (ctx, next) {
+export default (ctx, next) => {
     let origin = ctx.get('origin');
     if (config.origin.indexOf(origin) !== -1) {
         ctx.set('Access-Control-Allow-Origin', origin);
