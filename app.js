@@ -17,9 +17,9 @@ import cros from './middleware/cros';
 import index from './routes/index';
 import api from './routes/api';
 
-const APP_ID = process.env.LEANCLOUD_APP_ID || 'z4jzXcAKbNIa0xxluFtIuz80-gzGzoHsz';
-const APP_KEY = process.env.LEANCLOUD_APP_KEY || 'nAxHXqjX9hHPRrlnNxoYBMYk';
-const MASTER_KEY = process.env.LEANCLOUD_APP_MASTER_KEY || '4M07vmyAi1RHLjMmo7oXJYDN';
+const APP_ID = process.env.LC_APP_ID || 'z4jzXcAKbNIa0xxluFtIuz80-gzGzoHsz';
+const APP_KEY = process.env.LC_APP_KEY || 'nAxHXqjX9hHPRrlnNxoYBMYk';
+const MASTER_KEY = process.env.LC_APP_MASTER_KEY || '4M07vmyAi1RHLjMmo7oXJYDN';
 
 AV.initialize(APP_ID, APP_KEY, MASTER_KEY);
 // 如果不希望使用 masterKey 权限，可以将下面一行删除
@@ -30,7 +30,7 @@ const router = new Router();
 // const D = debug('charles:server');
 
 // 使用 LeanEngine 中间件
-app.use(AV.Cloud);
+// app.use(AV.Cloud);
 
 // force https
 // app.use(forceHttps(AV));
