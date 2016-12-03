@@ -16,6 +16,7 @@ import forceHttps from './middleware/https';
 import cros from './middleware/cros';
 import index from './routes/index';
 import api from './routes/api';
+import praise from './routes/praise';
 
 const APP_ID = process.env.LC_APP_ID || 'z4jzXcAKbNIa0xxluFtIuz80-gzGzoHsz';
 const APP_KEY = process.env.LC_APP_KEY || 'nAxHXqjX9hHPRrlnNxoYBMYk';
@@ -57,6 +58,11 @@ router.all('/__engine/1/ping', ctx => {
 });
 router.use('/', index.routes());
 router.use('/api', api.routes());
+
+// 赞
+import crosall from './middleware/crosall';
+router.use('/praise', crosall, praise.routes());
+
 
 app.use(router.routes());
 
