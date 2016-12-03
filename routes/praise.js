@@ -30,12 +30,15 @@ router.get('/', async (ctx, next) => {
     let radix = +ctx.request.body.radix;
     praise.radix = radix;
     updateParise();
-    ctx.body = {
-        radix: radix,
-        num: radix + praise.real,
-        no: 0,
-        msg: 'success'
-    }
+    await ctx.render('praise', {
+        radix: praise.radix,
+        real: praise.real
+    });
+}).get('/set', async (ctx, next) => {
+    await ctx.render('praise', {
+        radix: praise.radix,
+        real: praise.real
+    });
 });
 
 export default router;
