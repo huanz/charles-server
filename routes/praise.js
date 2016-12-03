@@ -1,11 +1,16 @@
 import fs from 'fs';
+import path from 'path';
 import Router from 'koa-router';
 
 const router = new Router();
 var praise = require('../data/praise');
 
 function updateParise() {
-    fs.writeFileSync('../data/praise.json', JSON.stringify(praise));
+    fs.writeFile(path.join(__dirname, '../data/praise.json'), JSON.stringify(praise), function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
 }
 
 router.get('/', async (ctx, next) => {
@@ -16,7 +21,7 @@ router.get('/', async (ctx, next) => {
     };
 }).post('/', async (ctx, next) => {
     praise.real = praise.real + 1;
-    updateParise(praise);
+    updateParise();
     ctx.body = {
         no: 0,
         msg: 'success'
@@ -24,7 +29,7 @@ router.get('/', async (ctx, next) => {
 }).post('/set', async (ctx, next) => {
     let radix = +ctx.request.body.radix;
     praise.radix = radix;
-    updateParise(praise);
+    updateParise();
     ctx.body = {
         radix: radix,
         num: radix + praise.real,
