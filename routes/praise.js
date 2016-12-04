@@ -39,6 +39,20 @@ router.get('/', async (ctx, next) => {
         radix: praise.radix,
         real: praise.real
     });
+}).get('/order', async (ctx, next) => {
+    ctx.body = {
+        no: 0,
+        msg: 'success',
+        num: praise.order
+    };
+}).post('/set', async (ctx, next) => {
+    praise.order = praise.order + 1;
+    updateParise();
+    ctx.body = {
+        no: 0,
+        msg: 'success',
+        num: praise.order
+    };
 });
 
 export default router;
