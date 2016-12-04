@@ -45,7 +45,7 @@ router.get('/', async (ctx, next) => {
         msg: 'success',
         num: praise.order
     };
-}).post('/set', async (ctx, next) => {
+}).post('/order', async (ctx, next) => {
     praise.order = praise.order + 1;
     updateParise();
     ctx.body = {
