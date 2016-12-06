@@ -38,7 +38,7 @@
         <input class="input" id="radix" type="number" name="radix" value="{{radix}}">
        </p>
        <p>
-       <label for="orderRadix">设置当前点赞基数：</label>
+       <label for="orderRadix">设置当前预约基数：</label>
        <input class="input" id="orderRadix" type="number" name="orderRadix" value="{{orderRadix}}">
        </p>
        <input class="sub" type="submit" value="提交">

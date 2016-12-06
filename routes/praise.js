@@ -49,7 +49,7 @@ router.get('/', async (ctx, next) => {
     ctx.body = {
         no: 0,
         msg: 'success',
-        num: praise.order
+        num: praise.order + praise.orderRadix
     };
 }).post('/order', async (ctx, next) => {
     praise.order = praise.order + 1;
