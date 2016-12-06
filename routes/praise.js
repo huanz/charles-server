@@ -28,16 +28,22 @@ router.get('/', async (ctx, next) => {
     };
 }).post('/set', async (ctx, next) => {
     let radix = +ctx.request.body.radix;
+    let orderRadix = +ctx.request.body.orderRadix;
     praise.radix = radix;
+    praise.orderRadix = orderRadix;
     updateParise();
     await ctx.render('praise', {
         radix: praise.radix,
-        real: praise.real
+        real: praise.real,
+        order: praise.order,
+        orderRadix: praise.orderRadix
     });
 }).get('/set', async (ctx, next) => {
     await ctx.render('praise', {
         radix: praise.radix,
-        real: praise.real
+        real: praise.real,
+        order: praise.order,
+        orderRadix: praise.orderRadix
     });
 }).get('/order', async (ctx, next) => {
     ctx.body = {

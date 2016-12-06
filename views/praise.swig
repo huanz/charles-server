@@ -32,8 +32,15 @@
 <body>
    <form method="post">
        <p>当前实际点赞数量：{{real}}</p>
-       <label for="radix">设置当前点赞基数：</label>
-       <input class="input" id="radix" type="number" name="radix" value="{{radix}}">
+       <p>当前实际预约数量：{{order}}</p>
+       <p>
+        <label for="radix">设置当前点赞基数：</label>
+        <input class="input" id="radix" type="number" name="radix" value="{{radix}}">
+       </p>
+       <p>
+       <label for="orderRadix">设置当前点赞基数：</label>
+       <input class="input" id="orderRadix" type="number" name="orderRadix" value="{{orderRadix}}">
+       </p>
        <input class="sub" type="submit" value="提交">
    </form>
 </body>
