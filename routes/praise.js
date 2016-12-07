@@ -17,6 +17,12 @@ function updateParise(fileName) {
     });
 }
 
+function has(p) {
+    return prize.list.some(function (item) {
+        return item.phone === p;
+    });
+}
+
 router.get('/', async (ctx, next) => {
     ctx.body = {
         no: 0,
@@ -69,15 +75,41 @@ router.get('/', async (ctx, next) => {
     });
 }).post('/prize', async (ctx, next) => {
     let phone = ctx.request.body.phone;
-    let praise = praiseMap[ctx.request.body.praise];
-    prize.list.push({
-        phone: phone,
-        praise: praise
-    });
-    updateParise('prize');
+    let msg = 'success'
+    if (has(phone)) {
+        msg = '此手机号已经中奖';
+    } else {
+        let praise = praiseMap[ctx.request.body.praise];
+        prize.list.push({
+            phone: phone,
+            praise: praise
+        });
+        updateParise('prize');
+    }
     ctx.body = {
         no: 0,
-        msg: 'success'
+        msg: msg
+    };
+}).get('/prizejson', async (ctx, next) => {
+    ctx.body = prize;
+}).get('/orderjson', async (ctx, next) => {
+    ctx.body = praise;
+}).get('/rate', async (ctx, next) => {
+    ctx.body = {
+        no: 0,
+        msg: 'success',
+        rate: prize.rate
+    };
+}).post('/rate', async (ctx, next) => {
+    let pid = ctx.request.body.pid;
+    if (pid < 7 && prize.rate[pid]) {
+        prize.rate[pid]--;
+        updateParise('prize');
+    }
+    ctx.body = {
+        no: 0,
+        msg: 'success',
+        rate: prize.rate
     };
 });
 

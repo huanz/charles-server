@@ -22,11 +22,11 @@
 <body>
     <table>
         <tr>
-            <th>奖品</th><th>手机号</th>
+            <td>序号</td><th>奖品</th><th>手机号</th>
         </tr>
         {% for prize in list %}
         <tr>
-            <td>{{prize.praise}}</td><td><a href="tel:{{prize.phone}}">{{prize.phone}}</a></td>
+            <td>{{loop.index}}</td><td>{{prize.praise}}</td><td><a href="tel:{{prize.phone}}">{{prize.phone}}</a></td>
         </tr>
         {% endfor %}
     </table>
