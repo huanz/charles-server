@@ -49,6 +49,20 @@ router.get('/', async (ctx, next) => {
         order: praise.order,
         orderRadix: praise.orderRadix
     });
+}).get('/order', async (ctx, next) => {
+    ctx.body = {
+        no: 0,
+        msg: 'success',
+        num: praise.order + praise.orderRadix
+    };
+}).post('/order', async (ctx, next) => {
+    praise.order = praise.order + 1;
+    updateParise();
+    ctx.body = {
+        no: 0,
+        msg: 'success',
+        num: praise.order
+    };
 }).get('/prize', async (ctx, next) => {
     await ctx.render('prize', {
         list: prize.list
