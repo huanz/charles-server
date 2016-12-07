@@ -3,10 +3,14 @@ import path from 'path';
 import Router from 'koa-router';
 
 const router = new Router();
+const praiseMap = ['', '魅族EP-31耳机', '魅族移动电源', '', '金刚熊猫钥匙扣', '', '魅族HD50耳机', ''];
 var praise = require('../data/praise');
+var prize = require('../data/prize');
 
-function updateParise() {
-    fs.writeFile(path.join(__dirname, '../data/praise.json'), JSON.stringify(praise), function (err) {
+function updateParise(fileName) {
+    fileName = fileName || 'praise';
+    var val = fileName === 'prize' ? prize : praise;
+    fs.writeFile(path.join(__dirname, '../data/' + fileName + '.json'), JSON.stringify(val), function (err) {
         if (err) {
             console.log(err);
         }
@@ -45,19 +49,21 @@ router.get('/', async (ctx, next) => {
         order: praise.order,
         orderRadix: praise.orderRadix
     });
-}).get('/order', async (ctx, next) => {
+}).get('/prize', async (ctx, next) => {
+    await ctx.render('prize', {
+        list: prize.list
+    });
+}).post('/prize', async (ctx, next) => {
+    let phone = ctx.request.body.phone;
+    let praise = praiseMap[ctx.request.body.praise];
+    prize.list.push({
+        phone: phone,
+        praise: praise
+    });
+    updateParise('prize');
     ctx.body = {
         no: 0,
-        msg: 'success',
-        num: praise.order + praise.orderRadix
-    };
-}).post('/order', async (ctx, next) => {
-    praise.order = praise.order + 1;
-    updateParise();
-    ctx.body = {
-        no: 0,
-        msg: 'success',
-        num: praise.order
+        msg: 'success'
     };
 });
 
